@@ -1,0 +1,23 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
+name: Example add-on
+version: "0.7.4"
+slug: example
+description: "Static page from my add-on"
+url: "https://github.com/home-assistant/addons-example/tree/main/example"
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+
+init: false
+startup: services
+boot: auto
+ingress: true
+ingress_port: 8199
+ingress_entry: index.html
+panel_icon: "mdi:radar"
+ports:
+  8199/tcp: null
+homeassistant_api: true

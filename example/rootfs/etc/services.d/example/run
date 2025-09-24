@@ -1,0 +1,25 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+
+# 获取用户配置的 message
+message=$(bashio::config 'message')
+bashio::log.info "Message from config: ${message:="Hello World..."}"
+
+# 打印确认脚本执行
+bashio::log.info "Starting simple HTTP server on /usr/share/www:8199"
+
+# 切换到存放 index.html 的目录
+cd /usr/share/www
+
+
+# 调用 test.sh（假设 test.sh 在同一目录且可执行）
+if [ -f "./test.sh" ]; then
+    bashio::log.info "Calling test.sh..."
+    ./test.sh
+else
+    bashio::log.warning "test.sh not found!"
+fi
+
+
+# 启动 HTTP server
+exec python3 backend.py
